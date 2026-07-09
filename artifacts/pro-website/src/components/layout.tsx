@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import logo from "@assets/466841705_1472768586731673_5806861578105725255_n_1782980480636.jpg";
+import logo from "@assets/Insta_Saver_@pakresearch.organization_dp_HD_1783617173485.jpg";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location, setLocation] = useLocation();

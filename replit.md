@@ -41,7 +41,7 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 ## Gotchas
 
-- The zip import did not include `attached_assets/` (referenced via the `@assets` Vite alias). A placeholder logo jpg was generated to unblock the build — replace `attached_assets/466841705_1472768586731673_5806861578105725255_n_1782980480636.jpg` with the real PRO logo.
+- The site logo lives at `attached_assets/Insta_Saver_@pakresearch.organization_dp_HD_1783617173485.jpg`, imported via the `@assets` Vite alias in `artifacts/pro-website/src/components/layout.tsx`.
 
 ## Pointers
 
