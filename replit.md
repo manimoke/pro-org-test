@@ -1,15 +1,18 @@
-# [Project name]
+# Pakistan Research Organisation
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A marketing/registration website for Pakistan Research Organisation, a student-led community that trains undergraduates across Pakistan to design, conduct, and publish original research, backed by an Express API for handling registrations.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/pro-website run dev` — run the marketing website (Vite)
+- `pnpm --filter @workspace/api-server run dev` — run the API server (routes mounted under `/api`, e.g. `/api/healthz`)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- Required env: `DATABASE_URL` — Postgres connection string (already provisioned via Replit's managed Postgres)
+- `PORT` and `BASE_PATH` are auto-injected by the Replit workflow/artifact system; api-server and pro-website will throw on startup if run manually without them
+- Optional env: `GOOGLE_SHEETS_WEBHOOK_URL` — forwards registration submissions to Google Sheets if set
 
 ## Stack
 
@@ -38,7 +41,7 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The zip import did not include `attached_assets/` (referenced via the `@assets` Vite alias). A placeholder logo jpg was generated to unblock the build — replace `attached_assets/466841705_1472768586731673_5806861578105725255_n_1782980480636.jpg` with the real PRO logo.
 
 ## Pointers
 

@@ -1,0 +1,1 @@
+- [Zip imports can drop attached_assets](zip-import-missing-assets.md) — check `@assets`-aliased imports resolve before declaring an imported project "running"; the folder is often excluded from exports.
