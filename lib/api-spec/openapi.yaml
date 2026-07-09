@@ -1,0 +1,165 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: registrations
+    description: Registration operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /registrations:
+    post:
+      operationId: createRegistration
+      tags: [registrations]
+      summary: Submit a registration
+      description: Creates a new PRO cohort registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registration"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+    YearOfStudy:
+      type: string
+      enum:
+        - "1st Year"
+        - "2nd Year"
+        - "3rd Year"
+        - "4th Year"
+        - "Graduate / Postgraduate"
+        - "Other"
+    AreaOfInterest:
+      type: string
+      enum:
+        - "Computer Science & AI"
+        - "Social Sciences"
+        - "Natural Sciences"
+        - "Economics & Business"
+        - "Public Policy"
+        - "Humanities"
+        - "Other"
+    HowHeard:
+      type: string
+      enum:
+        - "Instagram"
+        - "WhatsApp"
+        - "Friend / Referral"
+        - "University / Faculty"
+        - "LinkedIn"
+        - "Other"
+    Registration:
+      type: object
+      properties:
+        id:
+          type: integer
+        fullName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        institution:
+          type: string
+        yearOfStudy:
+          $ref: "#/components/schemas/YearOfStudy"
+        areasOfInterest:
+          type: array
+          items:
+            $ref: "#/components/schemas/AreaOfInterest"
+        howHeard:
+          type: ["string", "null"]
+        notes:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - fullName
+        - email
+        - phone
+        - institution
+        - yearOfStudy
+        - areasOfInterest
+        - createdAt
+    RegistrationInput:
+      type: object
+      properties:
+        fullName:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+          minLength: 1
+        institution:
+          type: string
+          minLength: 1
+        yearOfStudy:
+          $ref: "#/components/schemas/YearOfStudy"
+        areasOfInterest:
+          type: array
+          items:
+            $ref: "#/components/schemas/AreaOfInterest"
+        howHeard:
+          type: ["string", "null"]
+        notes:
+          type: ["string", "null"]
+      required:
+        - fullName
+        - email
+        - phone
+        - institution
+        - yearOfStudy
+        - areasOfInterest
+
