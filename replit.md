@@ -43,6 +43,17 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 - The site logo lives at `attached_assets/Insta_Saver_@pakresearch.organization_dp_HD_1783617173485.jpg`, imported via the `@assets` Vite alias in `artifacts/pro-website/src/components/layout.tsx`.
 
+## Deploying to Vercel
+
+1. Import the repo into Vercel (connect GitHub or push via `vercel` CLI)
+2. Vercel will pick up `vercel.json` automatically — no framework preset needed
+3. Set these environment variables in the Vercel project settings:
+   - `DATABASE_URL` — Postgres connection string (required)
+   - `GOOGLE_SHEETS_WEBHOOK_URL` — optional, forwards registrations to a Google Sheet
+4. `PORT` and `BASE_PATH` are **not** needed on Vercel — the frontend defaults to `/` and the API is a serverless function
+5. The `/api/*` routes are served from `api/index.ts` (Express wrapped as a Vercel serverless function)
+6. The SPA is served from `artifacts/pro-website/dist/public/`
+
 ## Pointers
 
 - See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
