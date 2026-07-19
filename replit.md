@@ -52,7 +52,7 @@ _Populate as you build — explicit user instructions worth remembering across s
    - `GOOGLE_SHEETS_WEBHOOK_URL` — optional, forwards registrations to a Google Sheet
 4. `PORT` and `BASE_PATH` are **not** needed on Vercel — the frontend defaults to `/` and the API is a serverless function
 5. The `/api/*` routes are served from `api/index.ts` (Express wrapped as a Vercel serverless function)
-6. The SPA is served from `artifacts/pro-website/dist/public/`
+6. On Vercel, the Vite build outputs to `public/` at the workspace root (Vercel's static dir). Locally it outputs to `artifacts/pro-website/dist/public/`. This is controlled by the `VERCEL=1` env var Vercel injects automatically.
 
 ## Pointers
 
