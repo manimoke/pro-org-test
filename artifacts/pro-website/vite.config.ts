@@ -47,7 +47,7 @@ export default defineConfig({
   build: {
     // On Vercel (VERCEL=1), output to the workspace root's public/ dir so
     // Vercel serves it as a static site. Locally, keep dist/public as usual.
-    outDir: process.env.VERCEL
+    outDir: (process.env.VERCEL || process.env.BUILD_TARGET_VERCEL)
       ? path.resolve(import.meta.dirname, "..", "..", "public")
       : path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
