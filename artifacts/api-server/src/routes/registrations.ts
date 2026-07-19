@@ -1,11 +1,11 @@
-import { Router, type IRouter } from "express";
+import { Router } from "express";
 import { db, registrationsTable } from "@workspace/db";
 import {
   CreateRegistrationBody,
   CreateRegistrationResponse,
 } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.post("/registrations", async (req, res): Promise<void> => {
   const parsed = CreateRegistrationBody.safeParse(req.body);
